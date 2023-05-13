@@ -1,5 +1,11 @@
 const fs = require("fs");
 const inquirer = require('inquirer');
+const fileName = "../examples/logo.svg";
+const shape = require("../lib/shape");
+const circle = require("../lib/circle");
+const triangle = require("../lib/triangle");
+const square = require("../lib/square");
+const colors = require("../lib/colours")
 
 function validateAnswer(value) {
     if (value != "") {
@@ -8,6 +14,35 @@ function validateAnswer(value) {
         return "Please answer the question to move forward";
     }
 }
+
+function createShape(response) {
+    if (response.shape === "Circle") {
+      let userShape = new circle(
+        response.shapeColor,
+        response.text,
+        response.textColor
+      );
+      return userShape.create();
+    }
+  
+    if (response.shape === "Square") {
+      let userShape = new square(
+        response.shapeColor,
+        response.text,
+        response.textColor
+      );
+      return userShape.create();
+    }
+  
+    if (response.shape === "Triangle") {
+      let userShape = new triangle(
+        response.shapeColor,
+        response.text,
+        response.textColor
+      );
+      return userShape.create();
+    }
+  }
 
 inquirer.prompt([
     {
@@ -41,4 +76,21 @@ inquirer.prompt([
         validate: validateAnswer,
     },
 ])
+.then
+((response) => {
+    createFile(response);
+    console.log(response.textColor)
+    return response; 
+    
+})
 
+function createFile(response) {
+    const svg = createShape(response);
+    fs.writeFile(fileName, svg, (err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("Generated logo.svg");
+        }
+      });
+}
