@@ -24,7 +24,7 @@ inquirer.prompt([
     {
         type: 'input',
         message: 'Enter text colour',
-        name: "textcolor",
+        name: "textColor",
         validate: validateAnswer,
     },
     {
@@ -37,7 +37,7 @@ inquirer.prompt([
     {
         type: 'input',
         message: 'Enter shape colour',
-        name: "shapecolour",
+        name: "shapeColor",
         validate: validateAnswer,
     },
 ])
