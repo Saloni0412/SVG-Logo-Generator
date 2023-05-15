@@ -1,11 +1,9 @@
 const fs = require("fs");
 const inquirer = require('inquirer');
 const fileName = "../examples/logo.svg";
-const shape = require("../lib/shape");
-const circle = require("../lib/circle");
-const triangle = require("../lib/triangle");
-const square = require("../lib/square");
-const colors = require("../lib/colours")
+const circle = require("../lib/circle.js");
+const triangle = require("../lib/triangle.js");
+const square = require("../lib/square.js");
 
 function validateAnswer(value) {
     if (value != "") {
